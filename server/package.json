@@ -1,0 +1,13 @@
+{
+  "name": "tactics-server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon index"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}

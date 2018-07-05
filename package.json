@@ -1,0 +1,13 @@
+{
+  "name": "tactics",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^3.6.0"
+  }
+}
