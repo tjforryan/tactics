@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import MapSquare from './MapSquare';
 import styled from 'styled-components';
+
+import MapSquare from './MapSquare';
 
 class BattleMap extends Component {
     render() {
@@ -21,14 +22,28 @@ class BattleMap extends Component {
     }
   }
 
-const maxMapSize = 75;
-
-const calculateSquareSize = (maxSize, numColumns, numRows) => maxSize / Math.max(numColumns, numRows)
+const calculateSquareSize = (maxSize, numDimensionInterestedIn, numOtherDimension) =>
+  maxSize / Math.max(numDimensionInterestedIn, numOtherDimension) * numDimensionInterestedIn
 
 export default styled(BattleMap)`
   background-color: red;
-  height: ${props => calculateSquareSize(maxMapSize, props.grid[0].length, props.grid.length) * props.grid.length}vmin;
-  width: ${props => calculateSquareSize(maxMapSize, props.grid[0].length, props.grid.length) * props.grid[0].length}vmin;
+
+  position: absolute;
+
+  /*
+    Below calculates how much space each dimension should occupy.
+    It will keep the map ratio and be as big as it can up to <maxMapSize>% in either direction.
+  */
+  height: ${props => calculateSquareSize(props.maxSize, props.grid.length, props.grid[0].length)}vmin;
+  width: ${props => calculateSquareSize(props.maxSize, props.grid[0].length, props.grid.length)}vmin;
+
+  /*
+    Below uses the above logic to center the map in the screen.
+    I want to find a neater way to do this, but this works at least...
+  */
+  top:  calc(calc(100vh - ${props => calculateSquareSize(props.maxSize, props.grid.length, props.grid[0].length)}vmin) / 2);
+  left: calc(calc(100vw - ${props => calculateSquareSize(props.maxSize, props.grid[0].length, props.grid.length)}vmin) / 2);
+
   display: grid;
   grid-gap: 2px 2px;
   /* Line below assumes all rows will be the same length */
