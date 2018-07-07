@@ -56,7 +56,7 @@ class Battle extends Component {
   render() {
     // TODO: Surrounding UI
     return (
-      <div className={this.props.clasName}>
+      <div>
         <BattleMap
           grid={tempData}
           maxSize={75}
@@ -66,9 +66,4 @@ class Battle extends Component {
   }
 }
 
-export default styled(Battle)`
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-`;
+export default Battle;
