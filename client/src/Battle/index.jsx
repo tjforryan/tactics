@@ -14,27 +14,31 @@ class Battle extends Component {
       try {
         const mapData = JSON.parse(event.data);
 
-        console.log('Recieved map data: ', mapData);
+        console.info('Recieved map data: ', mapData);
         this.setState({
           map: mapData,
-        })
+        });
       } catch (e) {
-        console.log('Could not read map data!')
+        console.error('Could not read map data!');
       }
     });
-  };
+  }
 
   render() {
     // TODO: Surrounding UI
+    const { map } = this.state;
+
     return (
       <div>
         {
-          this.state.map ?
-          <BattleMap
-            grid={this.state.map}
-            maxSize={75}
-          /> :
-          'Waiting for map data...'
+          map
+            ? (
+              <BattleMap
+                grid={map}
+                maxSize={75}
+              />
+            )
+            : 'Waiting for map data...'
         }
       </div>
     );

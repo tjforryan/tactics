@@ -20,7 +20,7 @@ const tempData = [
       state: 'destination',
     },
     {
-      heroImage: 'sirHector.jpg', 
+      heroImage: 'sirHector.jpg',
       state: 'selected',
     },
     {
@@ -53,14 +53,14 @@ const tempData = [
   ],
 ];
 
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
+wss.on('connection', (ws) => {
+  ws.on('message', (message) => {
     try {
       const receivedData = JSON.parse(message).data;
-      console.log(`Parsed content: ${receivedData}`);
+      console.info(`Parsed content: ${receivedData}`);
       ws.send(JSON.stringify({ something: 'new' }));
     } catch (e) {
-      console.log('Errored with: ', e)
+      console.error('Errored with: ', e);
       ws.close(1003, 'Received data not supported!');
     }
   });
@@ -68,4 +68,4 @@ wss.on('connection', function connection(ws) {
   ws.send(JSON.stringify(tempData));
 });
 
-console.log(`Listening using WS on port: ${wsPort}`)
+console.info(`Listening using WS on port: ${wsPort}`);
