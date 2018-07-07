@@ -26,7 +26,7 @@ const calculateSquareSize = (maxSize, numDimensionInterestedIn, numOtherDimensio
   maxSize / Math.max(numDimensionInterestedIn, numOtherDimension) * numDimensionInterestedIn
 
 export default styled(BattleMap)`
-  background-color: red;
+  background-color: #000;
 
   position: absolute;
 
@@ -52,5 +52,5 @@ export default styled(BattleMap)`
   justify-items: stretch;
   align-content: center;
   justify-content: center;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
 `;

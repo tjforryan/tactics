@@ -5,18 +5,29 @@ import BattleMap from './BattleMap';
 
 const tempData = [
   [
-    { something: 'meaningful' },
+    {},
     {},
     {},
     {},
     {},
   ],
   [
-    {},
-    {},
-    {},
-    {},
-    {},
+    {
+      state: 'attackable',
+    },
+    {
+      state: 'destination',
+    },
+    {
+      heroImage: 'sirHector.jpg', 
+      state: 'selected',
+    },
+    {
+      state: 'destination',
+    },
+    {
+      state: 'attackable',
+    },
   ],
   [
     {},
