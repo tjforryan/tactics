@@ -68,7 +68,6 @@ class Battle extends Component {
 
 export default styled(Battle)`
   width: 100%;
-  diplay: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
