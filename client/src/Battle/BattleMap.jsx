@@ -4,13 +4,16 @@ import styled from 'styled-components';
 
 import MapSquare from './MapSquare';
 
-const BattleMap = ({ className, grid }) => (
+const BattleMap = ({ className, grid, dispatch }) => (
   <div className={className}>
     {
-      grid.map((row, i) => (
-        row.map((cell, j) => (
+      grid.map((row, y) => (
+        row.map((cell, x) => (
           <MapSquare
-            key={`Row:_${i}_&_Column:_${j}`} // eslint-disable-line react/no-array-index-key
+            key={`Row:_${y}_&_Column:_${x}`} // eslint-disable-line react/no-array-index-key
+            dispatch={dispatch}
+            x={x}
+            y={y}
             cell={cell}
           />
         ))

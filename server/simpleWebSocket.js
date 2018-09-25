@@ -1,4 +1,7 @@
 const WebSocket = require('ws');
+const set = require('lodash/fp/set');
+
+const { MAP_SELECT_SQUARE } = require('../client/src/wsActionTypes');
 
 const wsPort = 8080;
 
@@ -51,21 +54,61 @@ const tempData = [
     {},
     {},
   ],
+  [
+    {},
+    {},
+    {},
+    {},
+    {},
+  ],
+  [
+    {},
+    {},
+    {},
+    {},
+    {},
+  ],
+  [
+    {},
+    {},
+    {},
+    {},
+    {},
+  ],
 ];
 
+const dispatchClient = ws => (data) => {
+  ws.send(JSON.stringify(data))
+}
+
+const selectSquare = (dispatch, {x, y}) => {
+  console.log()
+  console.log(`SQUARE SELECTED! x:${x}, y:${y}`)
+  console.log()
+
+
+  dispatch(set(`[${y}][${x}].state`, 'selected', tempData));
+}
+
+const actionMap = {
+  [MAP_SELECT_SQUARE]: selectSquare,
+};
+
 wss.on('connection', (ws) => {
+  const dispatch = dispatchClient(ws);
+
   ws.on('message', (message) => {
     try {
-      const receivedData = JSON.parse(message).data;
-      console.info(`Parsed content: ${receivedData}`);
-      ws.send(JSON.stringify({ something: 'new' }));
+      const receivedData = JSON.parse(message);
+      const action = actionMap[receivedData.type];
+      action(dispatch, receivedData.payLoad)
     } catch (e) {
       console.error('Errored with: ', e);
       ws.close(1003, 'Received data not supported!');
     }
   });
 
-  ws.send(JSON.stringify(tempData));
+  dispatch(tempData);
 });
 
 console.info(`Listening using WS on port: ${wsPort}`);

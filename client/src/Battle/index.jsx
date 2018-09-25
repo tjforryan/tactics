@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 
+import dispatchToSocket from '../actions/dispatchToSocket';
 import BattleMap from './BattleMap';
 
 class Battle extends Component {
   constructor() {
     super();
-    this.state = { map: null };
+    this.state = {
+      map: null,
+      dispatch: null,
+    };
   }
 
   componentDidMount() {
     const socket = new WebSocket('ws://localhost:8080');
+
     socket.addEventListener('message', (event) => {
       try {
         const mapData = JSON.parse(event.data);
@@ -21,12 +26,16 @@ class Battle extends Component {
       } catch (e) {
         console.error('Could not read map data!');
       }
+
+      this.setState({
+        dispatch: dispatchToSocket(socket),
+      });
     });
   }
 
   render() {
     // TODO: Surrounding UI
-    const { map } = this.state;
+    const { map, dispatch } = this.state;
 
     return (
       <div>
@@ -34,6 +43,7 @@ class Battle extends Component {
           map
             ? (
               <BattleMap
+                dispatch={dispatch}
                 grid={map}
                 maxSize={75}
               />
