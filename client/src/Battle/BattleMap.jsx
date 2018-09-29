@@ -31,6 +31,7 @@ BattleMap.propTypes = {
       }),
     ),
   ).isRequired,
+  dispatch: PropTypes.func,
 };
 
 const calculateSquareSize = (maxSize, numDimensionInterestedIn, numOtherDimension) => (

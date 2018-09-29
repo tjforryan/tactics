@@ -78,17 +78,17 @@ const tempData = [
 ];
 
 const dispatchClient = ws => (data) => {
-  ws.send(JSON.stringify(data))
-}
+  ws.send(JSON.stringify(data));
+};
 
-const selectSquare = (dispatch, {x, y}) => {
-  console.log()
-  console.log(`SQUARE SELECTED! x:${x}, y:${y}`)
-  console.log()
+const selectSquare = (dispatch, { x, y }) => {
+  console.info();
+  console.info(`SQUARE SELECTED! x:${x}, y:${y}`);
+  console.info();
 
 
   dispatch(set(`[${y}][${x}].state`, 'selected', tempData));
-}
+};
 
 const actionMap = {
   [MAP_SELECT_SQUARE]: selectSquare,
@@ -101,7 +101,7 @@ wss.on('connection', (ws) => {
     try {
       const receivedData = JSON.parse(message);
       const action = actionMap[receivedData.type];
-      action(dispatch, receivedData.payLoad)
+      action(dispatch, receivedData.payLoad);
     } catch (e) {
       console.error('Errored with: ', e);
       ws.close(1003, 'Received data not supported!');
