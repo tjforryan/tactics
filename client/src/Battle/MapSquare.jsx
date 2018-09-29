@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const MapSquare = ({ className }) => (
-  <div className={className}>
+import { MAP_SELECT_SQUARE } from '../wsActionTypes'; 
+  
+const MapSquare = ({ className, dispatch, x, y }) => (
+  <div
+    className={className}
+    onClick={() => { dispatch(MAP_SELECT_SQUARE, { x, y }) }}
+  >
     <div className="overlay" />
   </div>
 );
@@ -23,6 +28,8 @@ export default styled(MapSquare)`
   background-color:#9a9a9a;
   .overlay {
     height: 100%;
-    background-color: ${({ cell }) => (cell.state && overlayMap[cell.state] ? overlayMap[cell.state] : 'rgba(0, 0, 0, 0)')};
+    background-color: ${
+      ({ cell }) => (cell.state && overlayMap[cell.state] ? overlayMap[cell.state] : 'rgba(0, 0, 0, 0)')
+    };
   }
 `;
