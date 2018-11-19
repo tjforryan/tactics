@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import { MAP_SELECT_SQUARE } from '../wsActionTypes'; 
+import { MAP_SELECT_SQUARE } from '../wsActionTypes';
 
 const styles = {
   square: {
@@ -10,8 +10,8 @@ const styles = {
     backgroundColor: '#9a9a9a',
   },
   overlay: {
-    height:' 100%',
-  }
+    height: '100%',
+  },
 };
 
 const overlayMap = {
@@ -22,8 +22,9 @@ const overlayMap = {
 
 const MapSquare = ({ classes, dispatch, x, y, cell }) => (
   <div
+    role="button"
     className={classes.square}
-    onClick={() => { dispatch(MAP_SELECT_SQUARE, { x, y }) }}
+    onClick={() => { dispatch(MAP_SELECT_SQUARE, { x, y }); }}
   >
     <div
       className={classes.overlay}
@@ -35,6 +36,15 @@ const MapSquare = ({ classes, dispatch, x, y, cell }) => (
 );
 
 MapSquare.propTypes = {
+  classes: PropTypes.shape({
+    map: PropTypes.string,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  cell: PropTypes.shape({
+    state: PropTypes.string,
+  }).isRequired,
 };
 
 export default withStyles(styles)(MapSquare);

@@ -36,7 +36,7 @@ const BattleMap = ({ classes, grid, dispatch, maxSize }) => {
       style={{
         height: `${mapHeight}vmin`,
         width: `${mapWidth}vmin`,
-        /*  
+        /*
           Below uses the above logic to center the map in the screen.
           I want to find a neater way to do this, but this works at least...
         */
@@ -71,6 +71,11 @@ BattleMap.propTypes = {
       }),
     ),
   ).isRequired,
+  classes: PropTypes.shape({
+    map: PropTypes.string,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  maxSize: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(BattleMap);
