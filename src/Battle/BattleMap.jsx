@@ -14,13 +14,17 @@ const styles = {
     justifyItems: 'stretch',
     alignContent: 'center',
     justifyContent: 'center',
-    gridAutoFlow: 'row',
-  },
+    gridAutoFlow: 'row'
+  }
 };
 
-const calculateSquareSize = (maxSize, numDimensionInterestedIn, numOtherDimension) => (
-  maxSize / Math.max(numDimensionInterestedIn, numOtherDimension) * numDimensionInterestedIn
-);
+const calculateSquareSize = (
+  maxSize,
+  numDimensionInterestedIn,
+  numOtherDimension
+) =>
+  (maxSize / Math.max(numDimensionInterestedIn, numOtherDimension)) *
+  numDimensionInterestedIn;
 
 const BattleMap = ({ classes, grid, dispatch, maxSize }) => {
   /*
@@ -43,22 +47,22 @@ const BattleMap = ({ classes, grid, dispatch, maxSize }) => {
         top: `calc(calc(100vh - ${mapHeight}vmin) / 2)`,
         left: `calc(calc(100vw - ${mapWidth}vmin) / 2)`,
         /* Line below assumes all rows will be the same length */
-        gridTemplate: `repeat(${grid.length}, 1fr) / repeat(${grid[0].length}, 1fr)`,
+        gridTemplate: `repeat(${grid.length}, 1fr) / repeat(${
+          grid[0].length
+        }, 1fr)`
       }}
     >
-      {
-        grid.map((row, y) => (
-          row.map((cell, x) => (
-            <MapSquare
-              key={`Row:_${y}_&_Column:_${x}`} // eslint-disable-line react/no-array-index-key
-              dispatch={dispatch}
-              x={x}
-              y={y}
-              cell={cell}
-            />
-          ))
+      {grid.map((row, y) =>
+        row.map((cell, x) => (
+          <MapSquare
+            key={`Row:_${y}_&_Column:_${x}`} // eslint-disable-line react/no-array-index-key
+            dispatch={dispatch}
+            x={x}
+            y={y}
+            cell={cell}
+          />
         ))
-      }
+      )}
     </div>
   );
 };
@@ -67,15 +71,15 @@ BattleMap.propTypes = {
   grid: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({
-        state: PropTypes.string,
-      }),
-    ),
+        state: PropTypes.string
+      })
+    )
   ).isRequired,
   classes: PropTypes.shape({
-    map: PropTypes.string,
+    map: PropTypes.string
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
-  maxSize: PropTypes.number.isRequired,
+  maxSize: PropTypes.number.isRequired
 };
 
 export default withStyles(styles)(BattleMap);

@@ -2,26 +2,45 @@
   "name": "tactics",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && yarn start",
-    "server": "cd server && yarn start",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "lint": "eslint **/*.js **/*.jsx",
-    "lintFix": "eslint --fix **/*.js' '**/*.jsx",
-    "precommit-msg": "echo 'Pre-commit checks...'"
+    "server": "nodemon ./src/server/index",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn starteslint \"",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@material-ui/core": "^3.5.1",
+    "express": "^4.16.3",
+    "lint-staged": "^8.0.5",
+    "lodash": "~4.17.10",
+    "prettier": "^1.15.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-scripts": "2.1.1",
+    "ws": "^6.0.0"
+  },
   "devDependencies": {
     "concurrently": "^3.6.0",
-    "eslint": "5.9.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-jsx-a11y": "6.1.2",
-    "eslint-plugin-react": "7.11.1",
-    "husky": "^1.1.4"
+    "husky": "^1.1.4",
+    "nodemon": "^1.18.4"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn precommit-msg && yarn lint"
+      "pre-commit": "lint-staged"
     }
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

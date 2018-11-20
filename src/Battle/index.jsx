@@ -8,27 +8,27 @@ class Battle extends Component {
     super();
     this.state = {
       map: null,
-      dispatch: null,
+      dispatch: null
     };
   }
 
   componentDidMount() {
     const socket = new WebSocket('ws://localhost:8080');
 
-    socket.addEventListener('message', (event) => {
+    socket.addEventListener('message', event => {
       try {
         const mapData = JSON.parse(event.data);
 
         console.info('Recieved map data: ', mapData);
         this.setState({
-          map: mapData,
+          map: mapData
         });
       } catch (e) {
         console.error('Could not read map data!');
       }
 
       this.setState({
-        dispatch: dispatchToSocket(socket),
+        dispatch: dispatchToSocket(socket)
       });
     });
   }
@@ -39,17 +39,11 @@ class Battle extends Component {
 
     return (
       <div>
-        {
-          map
-            ? (
-              <BattleMap
-                dispatch={dispatch}
-                grid={map}
-                maxSize={75}
-              />
-            )
-            : 'Waiting for map data...'
-        }
+        {map ? (
+          <BattleMap dispatch={dispatch} grid={map} maxSize={75} />
+        ) : (
+          'Waiting for map data...'
+        )}
       </div>
     );
   }
