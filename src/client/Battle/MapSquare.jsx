@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import { MAP_SELECT_SQUARE } from '../wsActionTypes';
+import { MAP_SELECT_SQUARE } from '../../wsActionTypes';
 
 const styles = {
   square: {

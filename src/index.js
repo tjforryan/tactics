@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import Battle from './Battle/index';
+import Battle from './client/Battle/index';
 
 // TODO: Routing
 const App = () => (
