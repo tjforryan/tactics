@@ -1,6 +1,8 @@
 const WebSocket = require('ws');
 const set = require('lodash/fp/set');
 
+const { meleeMovement } = require('./movement/movement');
+
 const { MAP_SELECT_SQUARE } = require('../wsActionTypes');
 
 const wsPort = 8080;
@@ -45,6 +47,7 @@ const selectSquare = (dispatch, { x, y }) => {
   console.info();
 
   dispatch(set(`[${y}][${x}].state`, 'selected', tempData));
+  // meleeMovement(x, y, 2, tempData);
 };
 
 const actionMap = {
