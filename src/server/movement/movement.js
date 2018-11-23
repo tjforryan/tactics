@@ -21,7 +21,24 @@ function meleeMovement(x, y, moveDistance, grid) {
     grid
   );
 
-  return set(`[${y}][${x}].state`, 'selected', gridWithMoveable);
+  const attackableCoordinates = calculateSpacesByDistance(
+    x,
+    y,
+    moveDistance + 1,
+    moveDistance + 1,
+    grid
+  );
+
+  const gridWithAttackable = attackableCoordinates.reduce(
+    (currentGrid, { x, y }) => {
+      const gridClone = cloneDeep(currentGrid);
+      gridClone[y][x].state = 'attackable';
+      return gridClone;
+    },
+    gridWithMoveable
+  );
+
+  return set(`[${y}][${x}].state`, 'selected', gridWithAttackable);
 }
 
 module.exports = {
