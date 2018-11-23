@@ -78,7 +78,7 @@ BattleMap.propTypes = {
   classes: PropTypes.shape({
     map: PropTypes.string
   }).isRequired,
-  dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func,
   maxSize: PropTypes.number.isRequired
 };
 

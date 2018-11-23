@@ -44,7 +44,7 @@ MapSquare.propTypes = {
   classes: PropTypes.shape({
     map: PropTypes.string
   }).isRequired,
-  dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
   cell: PropTypes.shape({
