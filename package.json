@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "server": "nodemon ./src/server/index",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn starteslint \"",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn start \"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
