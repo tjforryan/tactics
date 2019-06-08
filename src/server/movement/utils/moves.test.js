@@ -22,17 +22,17 @@ describe('findMovesByDistance', () => {
 });
 
 describe('movesToCoordinates', () => {
-  it('returns deduped array of coordinates: new positions from distances traveled in each axis (no move)', () => {
+  it('returns de-duped array of coordinates: new positions from distances travelled in each axis (no move)', () => {
     expect(movesToCoordinates(3, 3, [])).toEqual([]);
   });
 
-  it('returns deduped array of coordinates: new positions from distances traveled in each axis (empty move)', () => {
+  it('returns de-duped array of coordinates: new positions from distances travelled in each axis (empty move)', () => {
     expect(movesToCoordinates(3, 3, [{ x: 0, y: 0 }])).toEqual([
       { x: 3, y: 3 }
     ]);
   });
 
-  it('returns deduped array of coordinates: new positions from distances traveled in each axis (one move)', () => {
+  it('returns de-duped array of coordinates: new positions from distances travelled in each axis (one move)', () => {
     expect(movesToCoordinates(3, 3, [{ x: 1, y: 2 }])).toEqual([
       { x: 4, y: 5 },
       { x: 4, y: 1 },
@@ -41,7 +41,7 @@ describe('movesToCoordinates', () => {
     ]);
   });
 
-  it('returns deduped array of coordinates: new positions from distances traveled in each axis (negative)', () => {
+  it('returns de-duped array of coordinates: new positions from distances travelled in each axis (negative)', () => {
     expect(movesToCoordinates(3, 1, [{ x: 1, y: 2 }])).toEqual([
       { x: 4, y: 3 },
       { x: 4, y: -1 },
@@ -50,7 +50,7 @@ describe('movesToCoordinates', () => {
     ]);
   });
 
-  it('returns deduped array of coordinates: new positions from distances traveled in each axis (multiple moves)', () => {
+  it('returns de-duped array of coordinates: new positions from distances travelled in each axis (multiple moves)', () => {
     expect(movesToCoordinates(3, 3, [{ x: 1, y: 2 }, { x: 2, y: 1 }])).toEqual([
       { x: 4, y: 5 },
       { x: 4, y: 1 },

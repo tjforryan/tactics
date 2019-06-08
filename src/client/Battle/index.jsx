@@ -19,7 +19,7 @@ class Battle extends Component {
       try {
         const mapData = JSON.parse(event.data);
 
-        console.info('Recieved map data: ', mapData);
+        console.info('Received map data: ', mapData);
         this.setState({
           map: mapData
         });
