@@ -19,7 +19,7 @@
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-scripts": "2.1.1",
-    "ws": "^6.0.0"
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "concurrently": "^3.6.0",
